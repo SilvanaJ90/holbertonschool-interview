@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 """ Doc """
 
+
 def minOperations(n):
-    """ Doc """
+    """ 
+    write a method that calculates the fewest number of operations needed
+    to result in exactly n H characters in the file.
+    """
     if n <= 1:
         return 0
-    
     num = 0
     i = 2
     
@@ -14,5 +17,4 @@ def minOperations(n):
             num += i
             n //= i
         i += 1
-    
     return num
