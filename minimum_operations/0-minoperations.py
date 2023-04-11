@@ -3,7 +3,7 @@
 
 
 def minOperations(n):
-    """ 
+    """
     write a method that calculates the fewest number of operations needed
     to result in exactly n H characters in the file.
     """
@@ -11,7 +11,7 @@ def minOperations(n):
         return 0
     num = 0
     i = 2
-    
+
     while i <= n:
         while n % i == 0:
             num += i
