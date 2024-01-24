@@ -66,7 +66,7 @@ heap_t *heap_insert(heap_t **root, int value)
 
     if (binary_tree_is_perfect(*root, depth, 0))
     {
-        parent = binary_tree_get_parent(*root, depth);
+        parent = get_insertion_point(*root);
         new_node = binary_tree_node(parent, value);
 
         if (!new_node)
@@ -82,4 +82,40 @@ heap_t *heap_insert(heap_t **root, int value)
     }
 
     return (NULL);
+}
+
+/**
+ * heapify_up - Restores the Max Heap property after insertion
+ * @node: Pointer to the newly inserted node
+ */
+void heapify_up(heap_t *node)
+{
+    int temp;
+
+    while (node->parent && node->n > node->parent->n)
+    {
+        temp = node->n;
+        node->n = node->parent->n;
+        node->parent->n = temp;
+
+        node = node->parent;
+    }
+}
+
+/**
+ * get_insertion_point - Gets the insertion point for the new node
+ * @root: Pointer to the root node of the Heap
+ * Return: Pointer to the parent node of the new node
+ */
+heap_t *get_insertion_point(heap_t *root)
+{
+    heap_t *parent;
+
+    while (root)
+    {
+        parent = root;
+        root = root->left;
+    }
+
+    return (parent);
 }
