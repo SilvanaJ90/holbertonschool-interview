@@ -2,10 +2,9 @@
 #include "sandpiles.h"
 
 /**
- * print_grid Print 3x3 grids sum
- * @grid: Left 3x3 grid
- * Return void
+ * print_grid - Prints a 3x3 grid to the console.
  *
+ * @grid: The 3x3 grid to be printed.
  */
 
 void print_grid(int grid[3][3])
@@ -24,15 +23,15 @@ void print_grid(int grid[3][3])
 }
 
 /**
- * @brief Performs the sandpiles sum operation on two 3x3 grids.
+ * sandpiles_sum - Performs the sandpiles sum operation on two 3x3 grids.
+ *
+ * @grid1: The first 3x3 grid.
+ * @grid2: The second 3x3 grid to be added to the first grid.
  *
  * This function takes two 3x3 grids as input and adds their corresponding elements.
  * If any element in the resulting grid is greater than 3, it performs stabilization
  * by redistributing the excess grains to neighboring cells until the grid becomes stable.
- * It prints the intermediate grids during the stabilization process.
- *
- * @param grid1 The first 3x3 grid.
- * @param grid2 The second 3x3 grid to be added to the first grid.
+ * It prints the intermediate grids during the stabilization process only if the grid is unstable.
  */
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
