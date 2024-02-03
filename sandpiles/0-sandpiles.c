@@ -2,12 +2,10 @@
 #include "sandpiles.h"
 
 /**
- * @brief Prints a 3x3 grid to the console.
+ * print_grid Print 3x3 grids sum
+ * @grid: Left 3x3 grid
+ * Return void
  *
- * This function takes a 2D array representing a 3x3 grid and prints its elements
- * in a formatted manner, separated by spaces. Each row is printed on a new line.
- *
- * @grid  The 3x3 grid to be printed.
  */
 void print_grid(int grid[3][3]) {
     int i, j;
