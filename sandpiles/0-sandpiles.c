@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include "sandpiles.h"
 
+/**
+ * @brief Prints a 3x3 grid to the console.
+ *
+ * This function takes a 2D array representing a 3x3 grid and prints its elements
+ * in a formatted manner, separated by spaces. Each row is printed on a new line.
+ *
+ * @grid  The 3x3 grid to be printed.
+ */
 void print_grid(int grid[3][3]) {
     int i, j;
     for (i = 0; i < 3; i++) {
@@ -13,66 +21,71 @@ void print_grid(int grid[3][3]) {
     }
 }
 
-void topple(int grid[3][3], int row, int col) {
-    grid[row][col] -= 4;
-    if (row - 1 >= 0)
-        grid[row - 1][col] += 1;
-    if (row + 1 < 3)
-        grid[row + 1][col] += 1;
-    if (col - 1 >= 0)
-        grid[row][col - 1] += 1;
-    if (col + 1 < 3)
-        grid[row][col + 1] += 1;
-}
+/**
+ * @brief Performs the sandpiles sum operation on two 3x3 grids.
+ *
+ * This function takes two 3x3 grids as input and adds their corresponding elements.
+ * If any element in the resulting grid is greater than 3, it performs stabilization
+ * by redistributing the excess grains to neighboring cells until the grid becomes stable.
+ * It prints the intermediate grids during the stabilization process.
+ *
+ * @param grid1 The first 3x3 grid.
+ * @param grid2 The second 3x3 grid to be added to the first grid.
+ */
+void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+{
+	int i, j, unstable;
+	int tmp[3][3];
 
-void stabilize(int grid[3][3]) {
-    int unstable = 1;
-    while (unstable) {
-        unstable = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (grid[i][j] > 3) {
-                    topple(grid, i, j);
-                    unstable = 1;
-                }
-            }
-        }
-        if (unstable) {
-            printf("=\n");
-            print_grid(grid);
-        }
-    }
-}
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			grid1[i][j] += grid2[i][j];
+		}
+	}
+	do {
+		unstable = 0;
 
-void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 3; j++)
-            grid1[i][j] += grid2[i][j];
+		for (i = 0; i < 3; i++)
+		{
+			for (j = 0; j < 3; j++)
+			{
+				tmp[i][j] = grid1[i][j];
+			}
+		}
 
-    stabilize(grid1);
-}
+		for (i = 0; i < 3; i++)
+		{
+			for (j = 0; j < 3; j++)
+			{
+				if (tmp[i][j] > 3)
+				{
+					unstable = 1;
+				}
+			}
+		}
+	
+		if (unstable)
+		print_grid(grid1);
 
-int main(void) {
-    int grid1[3][3] = {
-        {3, 3, 3},
-        {3, 3, 3},
-        {3, 3, 3}
-    };
-    int grid2[3][3] = {
-        {1, 3, 1},
-        {3, 3, 3},
-        {1, 3, 1}
-    };
-
-    printf("Original grids:\n");
-    print_grid(grid1);
-    printf("+\n");
-    print_grid(grid2);
-
-    sandpiles_sum(grid1, grid2);
-
-    printf("=\n");
-    print_grid(grid1);
-
-    return 0;
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+			if (tmp[i][j] > 3)
+			{
+				grid1[i][j] -= 4;
+				if (i > 0)
+					grid1[i - 1][j] += 1;
+				if (i < 2)
+					grid1[i + 1][j] += 1;
+				if (j > 0)
+					grid1[i][j - 1] += 1;
+				if (j < 2)
+					grid1[i][j + 1] += 1;
+			}
+		}
+	}
+	} while (unstable);
 }
