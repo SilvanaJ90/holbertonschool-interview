@@ -37,25 +37,21 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
     int i, j, unstable;
     int tmp[3][3];
 
-    // Perform grid addition
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
             grid1[i][j] += grid2[i][j];
         }
     }
 
-    // Stabilize the grid until it becomes stable
     do {
         unstable = 0;
 
-        // Copy the current state of the grid for comparison
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 3; j++) {
                 tmp[i][j] = grid1[i][j];
             }
         }
 
-        // Check for instability in the grid
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 3; j++) {
                 if (tmp[i][j] > 3) {
@@ -64,13 +60,12 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3]) {
             }
         }
 
-        // Print the grid if it is unstable
         if (unstable) {
             printf("=\n");
             print_grid(grid1);
         }
 
-        // Redistribute excess grains to stabilize the grid
+
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 3; j++) {
                 if (tmp[i][j] > 3) {
