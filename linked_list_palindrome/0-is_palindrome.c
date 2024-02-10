@@ -1,4 +1,4 @@
-#include <stddef.h> // Agregar esta línea para definir NULL
+#include <stddef.h> /* Agregar esta línea para definir NULL */
 #include "lists.h"
 
 /**
