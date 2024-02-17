@@ -32,7 +32,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 
 for line in sys.stdin:
-    """ Doc"""
+    """ for line """
     try:
         parts = line.split()
         ip_address = parts[0]
