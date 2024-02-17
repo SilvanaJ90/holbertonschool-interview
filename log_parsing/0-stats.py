@@ -35,6 +35,7 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Process input line by line
 for line in sys.stdin:
+    """ Doc """
     try:
         # Parse line
         parts = line.split()
