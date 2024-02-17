@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""" Doc """
+""" 
+Module for log parsing.
+This script reads stdin line by line and computes metrics.
+"""
 import sys
 import signal
 
