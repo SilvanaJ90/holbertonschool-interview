@@ -3,6 +3,7 @@
 Module for log parsing.
 This script reads stdin line by line and computes metrics.
 """
+
 import sys
 import signal
 
@@ -20,9 +21,7 @@ def signal_handler(sig, frame):
 
 # Function to print statistics
 def print_stats():
-    """Prints statistics including total file size
-    and counts of each status code.
-    """
+    """Prints statistics including total file size and counts of each status code."""
     print(f"File size: {file_size}")
     for code, count in sorted(status_codes.items()):
         if count > 0:
@@ -35,7 +34,6 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Process input line by line
 for line in sys.stdin:
-    """ Doc """
     try:
         # Parse line
         parts = line.split()
