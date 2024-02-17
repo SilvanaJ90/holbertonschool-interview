@@ -11,11 +11,13 @@ line_count = 0
 
 # Signal handler to print statistics on interrupt
 def signal_handler(sig, frame):
+    """ Doc """
     print_stats()
 
 
 # Function to print statistics
 def print_stats():
+    """ Doc """
     print(f"File size: {file_size}")
     for code, count in sorted(status_codes.items()):
         if count > 0:
